@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "AdventOfCode2022": {
+      "commandName": "Project"
+    },
+    "Debug": {
+      "commandName": "Project",
+      "commandLineArgs": "< \"$(ProjectDir)Day11/input.txt\""
+    }
+  }
+}
