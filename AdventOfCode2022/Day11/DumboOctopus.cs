@@ -43,7 +43,10 @@ public class DumboOctopus : IEnumerable<byte>
 			var start = Flashes;
 			Run();
 			if (Flashes - start == 100)
+			{
 				Console.WriteLine($"Full Flash: {i+1}");
+				break;
+			}
 		}
 	}
 
