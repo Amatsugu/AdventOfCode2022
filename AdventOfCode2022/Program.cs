@@ -1,19 +1,23 @@
 ﻿
 using AdventOfCode2022.Day11;
+using AdventOfCode2022.Day3;
 
 using System.Diagnostics;
 
-var input = File.ReadAllLines("Day11/input.txt");
+var input = File.ReadAllLines("Day3/input.txt");
 
-var dumbo = new DumboOctopus(input);
+var diag = new BinaryDiagnostic(input);
+diag.Run();
 
-dumbo.Run(1000);
+//var dumbo = new DumboOctopus(input);
 
-dumbo.Render();
+//dumbo.Run(1000);
 
-Console.Write("Flashes: ");
-Console.ForegroundColor = ConsoleColor.Green;
-Console.WriteLine(dumbo.Flashes);
+//dumbo.Render();
 
-Console.ForegroundColor = ConsoleColor.White;
+//Console.Write("Flashes: ");
+//Console.ForegroundColor = ConsoleColor.Green;
+//Console.WriteLine(dumbo.Flashes);
+
+//Console.ForegroundColor = ConsoleColor.White;
 
