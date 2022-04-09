@@ -3,7 +3,7 @@ using System.Text;
 
 namespace AdventOfCode2022.Day11;
 
-public class DumboOctopus : IEnumerable<byte>
+public class DumboOctopus : ProblemBase, IEnumerable<byte>
 {
 	public byte[] Data { get; init; }
 	public int Flashes { get; private set; }
@@ -174,5 +174,15 @@ public class DumboOctopus : IEnumerable<byte>
 			}
 			Console.WriteLine();
 		}
+	}
+
+	public override void RunPart1()
+	{
+		Run(100);
+	}
+
+	public override void RunPart2()
+	{
+		Run(210);
 	}
 }

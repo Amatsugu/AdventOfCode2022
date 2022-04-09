@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AdventOfCode2022.Day3;
 
-public class BinaryDiagnostic
+public class BinaryDiagnostic : ProblemBase
 {
 	public int[][] Data { get; set; }
 
@@ -15,7 +15,12 @@ public class BinaryDiagnostic
 		Data = data.Select(line => line.Select(b => int.Parse(b.ToString())).ToArray()).ToArray();
 	}
 
-	public void Run()
+	private int ToDecimal(int[] value)
+	{
+		return (int)value.Select((b, idx) => b * Math.Pow(2, value.Length - idx - 1)).Sum();
+	}
+
+	public override void RunPart1()
 	{
 		var width = Data[0].Length;
 		var transposed = Enumerable.Range(0, width).Select(idx => Data.Select(row => row[idx]));
@@ -33,13 +38,17 @@ public class BinaryDiagnostic
 		var gammaDec = ToDecimal(gamma);
 		var epsilongDec = ToDecimal(epsilon);
 
+		Console.WriteLine($"Power Usage: {gammaDec * epsilongDec}");
+	}
 
+	public override void RunPart2()
+	{
 		var oxygen = Data;
 		var index = 0;
 		while (oxygen.Length > 1)
 		{
 			var t = oxygen.Select(row => row[index]);
-			var m = t.Count() / 2f;
+			var m = oxygen.Length / 2f;
 			var g = t.Count(c => c == 1) >= m ? 1 : 0;
 			oxygen = oxygen.Where(row => row[index] == g).ToArray();
 			index++;
@@ -50,7 +59,7 @@ public class BinaryDiagnostic
 		while (carbon.Length > 1)
 		{
 			var t = carbon.Select(row => row[index]);
-			var m = t.Count() / 2f;
+			var m = carbon.Length / 2f;
 			var e = t.Count(c => c == 1) < m ? 1 : 0;
 			carbon = carbon.Where(row => row[index] == e).ToArray();
 			index++;
@@ -59,15 +68,6 @@ public class BinaryDiagnostic
 		var oxygenLevel = ToDecimal(oxygen.First());
 		var carbonLevel = ToDecimal(carbon.First());
 
-
-
-		Console.WriteLine($"Power Usage: {gammaDec * epsilongDec}");
 		Console.WriteLine($"Life Support: {oxygenLevel * carbonLevel}");
-	}
-
-
-	private int ToDecimal(int[] value)
-	{
-		return (int)value.Select((b, idx) => b * Math.Pow(2, value.Length - idx - 1)).Sum();
 	}
 }

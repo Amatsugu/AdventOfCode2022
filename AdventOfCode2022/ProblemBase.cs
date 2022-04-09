@@ -6,16 +6,15 @@ using System.Threading.Tasks;
 
 namespace AdventOfCode2022;
 
-internal interface IProblemBase
+public abstract class ProblemBase
 {
-	public void Setup();
 
-	public void RunPart1();
-	public void RunPart2();
-
+	public abstract void RunPart1();
+	public abstract void RunPart2();
 
 
-	public void Cleanup()
+
+	public virtual void Cleanup()
 	{
 
 	}
